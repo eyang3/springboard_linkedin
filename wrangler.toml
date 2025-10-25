@@ -1,0 +1,3 @@
+main = "main.js"
+name = "springboard"
+node_compat = true
