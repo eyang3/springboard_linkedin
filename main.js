@@ -1,11 +1,12 @@
-const restana = require('restana');
-const service = restana();
-const apiKey = process.env.API_KEY;
 
-service.get('/hi', (req, res) => {
-  res.send('Hello World!');
-});
-
-service.start(3000).then(() => {
-  console.log('Restana server is running on port 3000');
-});
+export default {
+	async fetch(request, env, ctx) {
+		if (request.method === 'GET') {
+			return new Response('GET request received');
+		} else if (request.method === 'POST') {
+			const body = await request.json(); // Example for JSON body
+			return new Response(JSON.stringify({ message: 'POST request received', data: body }));
+		}
+		return new Response('Method Not Allowed', { status: 405 });
+	},
+};
